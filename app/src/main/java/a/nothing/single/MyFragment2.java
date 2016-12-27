@@ -1,4 +1,4 @@
-package a.nothing;
+package a.nothing.single;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import a.nothing.R;
 
 /**
  * Created by dell on 2016/12/13.

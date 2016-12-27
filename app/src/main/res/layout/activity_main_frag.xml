@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="a.nothing.fragment.MainFrag">
+
+    <Button
+        android:id="@+id/btn_ListFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="List"/>
+
+    <Button
+        android:id="@+id/btn_DialogFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_ListFragment"
+        android:onClick="onClick"
+        android:text="Dialog"/>
+
+    <Button
+        android:id="@+id/btn_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btn_DialogFragment"
+        android:onClick="onClick"
+        android:text="popup"/>
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btn_ListFragment">
+
+    </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/option_menu1"
+        android:title="1_1">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/menu_bla1"
+                    android:title="bla1"/>
+                <item
+                    android:id="@+id/menu_bla2"
+                    android:title="bla2"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/option_menu2"
+        android:title="1_2">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/menu_bla3"
+                    android:title="bla3"/>
+                <item
+                    android:id="@+id/menu_bla4"
+                    android:title="bla4"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/option_menu3"
+        android:title="1_3">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/menu_bla5"
+                    android:title="bla5"/>
+                <item
+                    android:id="@+id/menu_bla6"
+                    android:title="bla5"/>
+            </group>
+        </menu>
+    </item>
+</menu>

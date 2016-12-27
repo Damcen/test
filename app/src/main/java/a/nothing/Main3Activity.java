@@ -21,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class Main3Activity extends AppCompatActivity
 {
@@ -53,13 +54,14 @@ public class Main3Activity extends AppCompatActivity
 
     private List<String> spinners;
     private ArrayAdapter<String> adapter_spinner;
+    private Unbinder bind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        ButterKnife.bind(this);
+        bind = ButterKnife.bind(this);
 
         autos = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, initList(autos));
@@ -70,7 +72,7 @@ public class Main3Activity extends AppCompatActivity
         adapter_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(adapter_spinner);
 
-        //datePicker
+//        datePicker
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
@@ -83,7 +85,6 @@ public class Main3Activity extends AppCompatActivity
                 Main3Activity.this.year = i;
                 Main3Activity.this.month = i1;
                 Main3Activity.this.day = i2;
-
             }
         });
 
@@ -167,5 +168,12 @@ public class Main3Activity extends AppCompatActivity
         }
         flag++;
         return list;
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        bind.unbind();
     }
 }

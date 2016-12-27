@@ -8,7 +8,7 @@
     android:columnCount="2"
     android:orientation="horizontal"
     android:rowCount="3"
-    tools:context="a.nothing.MainActivity">
+    tools:context="a.nothing.single.MainActivity">
 
     <TextView
         android:layout_columnSpan="2"
