@@ -5,7 +5,7 @@
     android:id="@+id/activity_main7"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="a.nothing.ContentProvider.Main7Activity">
+    tools:context="a.nothing.contentProvider.Main7Activity">
 
     <Button
         android:id="@+id/btn_cp_sms"

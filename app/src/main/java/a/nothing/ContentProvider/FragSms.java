@@ -1,4 +1,4 @@
-package a.nothing.ContentProvider;
+package a.nothing.contentProvider;
 
 import android.app.Fragment;
 import android.content.ContentResolver;

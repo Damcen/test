@@ -1,4 +1,4 @@
-package a.nothing.ContentProvider;
+package a.nothing.contentProvider;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;

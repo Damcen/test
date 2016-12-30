@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ContentProvider.Main7Activity"
+            android:name=".Mainly"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -39,6 +39,14 @@
         <activity android:name=".fragment.MainFrag">
         </activity>
         <activity android:name=".sqlite.Main6Activity">
+        </activity>
+        <activity android:name=".contentProvider.Main7Activity">
+        </activity>
+        <activity android:name=".load.Main8Activity">
+        </activity>
+        <activity android:name=".contentProvider.self.Main9Activity">
+        </activity>
+        <activity android:name=".handler.Main10Activity">
         </activity>
     </application>
 

@@ -35,7 +35,7 @@ public class Menu1 extends AppCompatActivity
         {
             list.add("chua  " + i);
         }
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
 
         lv.setAdapter(adapter);
         registerForContextMenu(lv);
@@ -134,6 +134,7 @@ public class Menu1 extends AppCompatActivity
         }
         return super.onContextItemSelected(item);
     }
+
 
 
     @Override

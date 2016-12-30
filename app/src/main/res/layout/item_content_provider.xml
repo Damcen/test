@@ -16,4 +16,5 @@
         android:layout_height="wrap_content"
         android:paddingTop="2dp"
         android:text="body"/>
+
 </LinearLayout>
