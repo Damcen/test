@@ -18,8 +18,11 @@ public class MySqlite extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        db.execSQL("create table user(_id Integer primary key autoincrement,name varchar(50))");
-        db.execSQL("alter table user add age Integer");
+        db.execSQL("create table user(_id integer primary key autoincrement,name,pwd,money)");
+
+        db.execSQL("insert into user (name,pwd,money) values('tua',123,10086)");
+        db.execSQL("insert into user (name,pwd,money) values('chua',321,10010)");
+//        db.execSQL("insert into user (name,pwd,money) values('rua',213,10000)");
     }
 
     @Override

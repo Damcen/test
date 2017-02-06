@@ -1,4 +1,4 @@
-package a.nothing.single;
+package a.nothing.single.day1;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

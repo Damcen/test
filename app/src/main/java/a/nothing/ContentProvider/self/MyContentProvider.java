@@ -19,60 +19,39 @@ import android.text.TextUtils;
 
 public class MyContentProvider extends ContentProvider
 {
-    private MySqlite mySqlite;
-    private SQLiteDatabase userDB;
-
-    private Context context;
-
-    public MyContentProvider(Context context)
-    {
-        this.context = context;
-    }
-
-    final static String AUTHORITY = "a.nothing.contentProvider.self.test";
-    static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/users");
-    private static UriMatcher mUriMatcher;
+    final static String AUTHORITY = "a.nothing.contentProvider.self.zz";
     public static final int USER_DIR = 0;
     public static final int USER = 1;
+
+    private static UriMatcher mUriMatcher;
 
     static
     {
         mUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         mUriMatcher.addURI(AUTHORITY, "user", USER_DIR);
-        mUriMatcher.addURI(AUTHORITY, "person/#", USER);
     }
+
+    private MySqlite mySqlite;
 
     @Override
     public boolean onCreate()
     {
-//        Context context = getContext();
-        mySqlite = new MySqlite(context);
-        userDB = mySqlite.getWritableDatabase();
-        return userDB == null ? false : true;
+        mySqlite = new MySqlite(getContext());
+        return true;
     }
 
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
-        SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
-        builder.setTables("user");
-
-        if (mUriMatcher.match(uri) == USER)
-            builder.appendWhere("_id = " + uri.getPathSegments().get(1));
-
-        if (sortOrder == null || sortOrder == "")
-            sortOrder = "name";
-
-        Cursor c = builder.query(
-                userDB,
-                projection,
-                selection,
-                selectionArgs,
-                null, null,
-                sortOrder);
-
-        c.setNotificationUri(getContext().getContentResolver(), uri);
+        SQLiteDatabase database = mySqlite.getReadableDatabase();
+        Cursor c = null;
+        switch (mUriMatcher.match(uri))
+        {
+            case USER_DIR:
+                c = database.query("user", projection, selection, selectionArgs, null, null, sortOrder);
+                break;
+        }
         return c;
     }
 
@@ -80,30 +59,31 @@ public class MyContentProvider extends ContentProvider
     @Override
     public String getType(Uri uri)
     {
-        switch (mUriMatcher.match(uri))
-        {
-            case USER_DIR:
-                return "vnd.android.cursor.dir/" + AUTHORITY + ".users";
-
-            case USER:
-                return "vnd.android.cursor.item/" + AUTHORITY + ".user";
-
-            default:
-                throw new IllegalArgumentException("unknown uri" + uri.toString());
-        }
+//        switch (mUriMatcher.match(uri))
+//        {
+//            case USER_DIR:
+//                return "vnd.android.cursor.dir/" + AUTHORITY + ".users";
+//
+//            case USER:
+//                return "vnd.android.cursor.item/" + AUTHORITY + ".user";
+//
+//            default:
+//                throw new IllegalArgumentException("unknown uri" + uri.toString());
+//        }
+        return null;
     }
 
     @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues values)
     {
-        long rowID = userDB.insert("user", "name,age", values);
+        SQLiteDatabase database = mySqlite.getWritableDatabase();
+        long rowID = -1;
 
-        if (rowID > 0)
+        if (mUriMatcher.match(uri) == 0)
         {
-            Uri _uri = ContentUris.withAppendedId(CONTENT_URI, rowID);
-            getContext().getContentResolver().notifyChange(_uri, null);
-            return _uri;
+            rowID = database.insert("user", null, values);
+            return ContentUris.withAppendedId(uri, rowID);
         }
         throw new SQLException("Failed to insert row into " + uri);
     }
@@ -111,30 +91,29 @@ public class MyContentProvider extends ContentProvider
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs)
     {
-        int count = 0;
+        SQLiteDatabase database = mySqlite.getWritableDatabase();
+        int count = -1;
         switch (mUriMatcher.match(uri))
         {
             case USER_DIR:
-                count = userDB.delete("user", selection, selectionArgs);
-                break;
-
-            case USER:
-                String id = uri.getPathSegments().get(1);
-                count = userDB.delete("user",
-                        "_id" + "=" + id + (!TextUtils.isEmpty(selection) ? " AND (" + selection + ")" : ""),
-                        selectionArgs);
+                count = database.delete("user", null, null);
                 break;
 
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
-        getContext().getContentResolver().notifyChange(uri, null);
         return count;
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
     {
-        return 0;
+        SQLiteDatabase database = mySqlite.getWritableDatabase();
+        int count = -1;
+        if (mUriMatcher.match(uri) == 0)
+        {
+            count = database.update("user", values, null, null);
+        }
+        return count;
     }
 }

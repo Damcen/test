@@ -1,4 +1,4 @@
-package a.nothing.single;
+package a.nothing.single.day1;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import a.nothing.R;
-import a.nothing.single.MyFragment;
-import a.nothing.single.MyFragment2;
 
 
 public class MainActivity extends AppCompatActivity

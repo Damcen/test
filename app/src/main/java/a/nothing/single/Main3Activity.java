@@ -1,4 +1,4 @@
-package a.nothing;
+package a.nothing.single;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import a.nothing.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
